@@ -2,9 +2,9 @@
 title: 🎉干货满满，React设计原理(一)：藏在源码里的紧箍咒🎉
 isTimeLine: true
 date: 2023-06-07
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - React
 ---

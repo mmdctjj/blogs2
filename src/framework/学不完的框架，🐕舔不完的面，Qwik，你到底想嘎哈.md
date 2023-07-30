@@ -2,9 +2,9 @@
 title: 学不完的框架，🐕舔不完的面，Qwik，你到底想嘎哈？
 isTimeLine: true
 date: 2023-06-12
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - Vite
 ---

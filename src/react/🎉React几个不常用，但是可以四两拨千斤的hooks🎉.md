@@ -2,9 +2,9 @@
 title: 🎉React几个不常用，但是可以四两拨千斤的hooks🎉
 isTimeLine: true
 date: 2023-05-09
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - React
 ---

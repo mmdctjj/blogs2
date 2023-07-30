@@ -2,9 +2,9 @@
 title: 🎉一个demo体验Vue3.3所有新功能🎉
 isTimeLine: true
 date: 2023-06-05
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - Vue
 ---

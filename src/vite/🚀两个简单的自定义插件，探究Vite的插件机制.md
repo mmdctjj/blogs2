@@ -2,9 +2,9 @@
 title: 🚀两个简单的自定义插件，探究Vite的插件机制
 isTimeLine: true
 date: 2023-06-14
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - Vite
 ---

@@ -2,9 +2,9 @@
 title: 优美的Reactl列表动画：Styled-Components动画实践
 isTimeLine: true
 date: 2023-03-15
-categories:
+category:
   - 前端
-tags:
+tag:
   - React
   - 用户体验
 ---

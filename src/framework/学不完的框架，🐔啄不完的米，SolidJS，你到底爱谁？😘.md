@@ -2,9 +2,9 @@
 title: 学不完的框架，🐔啄不完的米，SolidJS，你到底爱谁？😘
 isTimeLine: true
 date: 2023-05-25
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - SolidJS
 ---

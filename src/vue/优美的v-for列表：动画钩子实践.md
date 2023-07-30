@@ -2,9 +2,9 @@
 title: 优美的v-for列表：动画钩子实践
 isTimeLine: true
 date: 2023-03-15
-categories:
+category:
   - 前端
-tags:
+tag:
   - Vue
   - 用户体验
 ---

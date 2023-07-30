@@ -2,9 +2,9 @@
 title: 🎉干货满满，React设计原理(二)：藏在源码里的两个圈🎉
 isTimeLine: true
 date: 2023-06-08
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - React
 ---

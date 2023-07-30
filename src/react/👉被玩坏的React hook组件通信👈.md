@@ -2,9 +2,9 @@
 title: 👉被玩坏的React hook组件通信👈
 isTimeLine: true
 date: 2023-05-10
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - React
 ---

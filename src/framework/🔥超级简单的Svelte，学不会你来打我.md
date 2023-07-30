@@ -2,9 +2,9 @@
 title: 🔥超级简单的Svelte，学不会你来打我
 isTimeLine: true
 date: 2023-04-28
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - Svelte
 ---

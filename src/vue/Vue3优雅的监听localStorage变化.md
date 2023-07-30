@@ -2,9 +2,9 @@
 title: Vue3优雅的监听localStorage变化
 isTimeLine: true
 date: 2023-06-01
-categories:
+category:
   - 前端
-tags:
+tag:
   - JavaScript
   - Vue
 ---
