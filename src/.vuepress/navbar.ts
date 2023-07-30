@@ -22,4 +22,24 @@ export default navbar([
     icon: 'geometry',
     link: '/framework/'
   },
+  {
+    text: '杂谈',
+    icon: 'article',
+    link: '/posts/'
+  },
+  {
+    text: '标签',
+    icon: 'tag',
+    link: '/tag/javascript/'
+  },
+  {
+    text: '分类',
+    icon: 'categoryselected',
+    link: '/category/前端/'
+  },
+  {
+    text: '时间轴',
+    icon: 'time',
+    link: '/timeline/'
+  },
 ]);
