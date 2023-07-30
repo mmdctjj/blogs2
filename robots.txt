@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://mmdctjj.github.io/blog2/sitemap.xml
+Sitemap: https://mmdctjj.github.io/blog2/blogs2/sitemap.xml
