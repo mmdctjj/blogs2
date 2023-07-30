@@ -9,18 +9,18 @@ export default hopeTheme({
 
   hotReload: true,
 
-  hostname: "https://mmdctjj.github.io/",
+  hostname: "https://mmdctjj.github.io/blog2",
 
   author: {
     name: "萌萌哒草头将军",
-    url: "https://mmdctjj.github.io/",
+    url: "https://mmdctjj.github.io/blog2",
   },
 
   iconAssets: "iconfont",
 
   logo: "/logo.svg",
 
-  repo: "mmdctjj/blogs",
+  repo: "mmdctjj/blog2",
 
   docsDir: "src",
 
