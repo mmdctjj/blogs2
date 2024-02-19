@@ -10,7 +10,7 @@
 
 我的公众号：萌萌哒草头将军
 
-我的博客主页：https://mmdctjj.github.io/blogs/
+我的博客主页：https://mmdctjj.github.io/blogs2/
 
 我的开源项目：https://github.com/mmdctjj/raetable
 
