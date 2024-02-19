@@ -20,7 +20,7 @@ export default hopeTheme({
 
   logo: "/logo.jpg",
 
-  repo: "mmdctjj/blog2",
+  repo: "mmdctjj/blogs2",
 
   docsDir: "src",
 
