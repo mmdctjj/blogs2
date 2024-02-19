@@ -13,7 +13,9 @@ export default defineUserConfig({
 
   // Enable it with pwa
   // shouldPrefetch: false,
-
+  head: [
+    ['meta', { name: 'referrer', content: 'no-referrer' }]
+  ],
   plugins: [
     searchProPlugin({
       // 索引全部内容
