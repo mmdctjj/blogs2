@@ -43,6 +43,8 @@ React 对浏览器原生事件进行了封装，例如，当用户通过`onClick
 
 在 16.8 及之前的版本，这些事件直接被绑定在 document 元素上，而从 17.2 开始，将全局事件绑定在了入口 dom 上了，这么做的好处利于多应用，因为 react 支持一个 document 下挂在多个 React 应用，这样做互不干扰。
 
+<p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5adcea459cbd40f199c99d444be48398~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=840&h=650&s=145843&e=png&b=ffffff" alt="image.png" width="100%" /></p>
+
 我们知道每个 React 应用的入口是通过 createRoot 函数，我们打开源码，就可以看到该函数的一项工作是 `listenToAllSupportedEvents`，也就是在 rootNode 监听 所有支持的事件。
 
 深入的研究，可以看到 React 根据事件的优先级分为：离散事件、连续事件、普通事件，在 createEventListenerWrapperWithPriority 中，通过当前事件的级别，分发对应的事件监听器
@@ -82,6 +84,8 @@ function createEventListenerWrapperWithPriority(
 
 接着，我们来在来看看后续的操作
 
+`addTrappedEventListener` 函数是用于添加事件监听器的入口函数，通过该函数中的 `createEventListenerWrapperWithPriority`函数，根据事件优先级返回相应的事件监听器包装函数 `listenerWrapper`。接着，在 `addEventCaptureListener` 捕获阶段添加事件监听器。它通过调用 `target.addEventListener` 将监听器 `listener` 添加到目标元素 `target` 上，并指定为捕获阶段（true）。
+
 ```js
 function addTrappedEventListener(
   targetContainer,
@@ -99,13 +103,8 @@ function addTrappedEventListener(
 
   var isPassiveListener = undefined;
 
+  // 根据 passiveBrowserEventsSupported 变量的值，确定是否使用被动事件监听器
   if (passiveBrowserEventsSupported) {
-    // Browsers introduced an intervention, making these events
-    // passive by default on document. React doesn't bind them
-    // to document anymore, but changing this now would undo
-    // the performance wins from the change. So we emulate
-    // the existing behavior manually on the roots now.
-    // https://github.com/facebook/react/issues/19651
     if (
       domEventName === "touchstart" ||
       domEventName === "touchmove" ||
@@ -149,6 +148,50 @@ function addTrappedEventListener(
       );
     }
   }
+}
+```
+
+`createEventListenerWrapperWithPriority` 内部逻辑如下：
+
+```js
+function createEventListenerWrapperWithPriority(
+  targetContainer,
+  domEventName,
+  eventSystemFlags
+) {
+  var eventPriority = getEventPriority(domEventName);
+  var listenerWrapper;
+
+  switch (eventPriority) {
+    case DiscreteEventPriority:
+      listenerWrapper = dispatchDiscreteEvent;
+      break;
+
+    case ContinuousEventPriority:
+      listenerWrapper = dispatchContinuousEvent;
+      break;
+
+    case DefaultEventPriority:
+    default:
+      listenerWrapper = dispatchEvent;
+      break;
+  }
+
+  return listenerWrapper.bind(
+    null,
+    domEventName,
+    eventSystemFlags,
+    targetContainer
+  );
+}
+```
+
+`addEventCaptureListener` 逻辑如下：
+
+```js
+function addEventCaptureListener(target, eventType, listener) {
+  target.addEventListener(eventType, listener, true);
+  return listener;
 }
 ```
 
