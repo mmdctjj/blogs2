@@ -19,33 +19,65 @@ tag:
 - [🎉 干货满满，React 设计原理(二)：藏在源码里的两个圈 🎉](https://juejin.cn/post/7242249906257363001)
 - [🎉 干货满满，React 设计原理(三)：藏在源码里的排位赛，Lane 模型 🎉](https://juejin.cn/post/7248982532728602681)
 
-## 💎 第四座大山：事件系统和 Dispatch 机制
+## 💎 第四座大山：事件系统
 
-### 🚀 事件系统
+### 一些表象和原因
 
-首先，我们需要知道更新任务的如何产生的——事件系统。
+事件系统是十分有趣但稍显复杂的模块。为了方便理解，我们带入一个问题：我们设置的`onClick`方法如何被执行的？
 
-React 对浏览器原生事件进行了封装，例如，当用户通过`onClick`属性触发交互行为时，React 先将事件进行优化处理，然后转化为原生的 `onclick` 事件。
+首先，React 对浏览器原生事件进行了封装，例如，当用户通过`onClick`属性触发交互行为时，React 先将事件进行优化处理，然后转化为原生的 `click` 事件。
 
-封装的目的如下：
+这样封装的目的，**一方面**可以解决不同浏览器的兼容性问题；
 
-1. 事件合成与封装：React 对浏览器原生事件进行了封装，创建了一个统一的跨浏览器事件对象。这个事件对象提供了一致的 API，使得事件处理函数可以在不同的浏览器中以相同的方式处理事件。
+**另一方面**可以减少事件处理函数的数量，提高性能和效率，我们提供如下组件
 
-2. 事件委托与冒泡：React 使用事件委托机制来处理事件。它将事件处理函数绑定到组件的最上层容器元素，然后通过事件冒泡机制将事件传递给实际触发事件的元素。这样可以减少事件处理函数的数量，提高性能和效率。
+```jsx
+const handerClick = () => console.log("公众号：萌萌哒草头将军")
+<button onClick={handerClick}>btn</button>
+```
 
-3. 事件系统的合成与扩展：React 的事件系统支持对原生事件的扩展。它可以合成多个浏览器事件，例如鼠标事件和触摸事件，以提供更丰富的事件处理能力。同时，React 还提供了一些额外的事件，如`onMouseEnter`、`onMouseLeave`等，来处理特定的交互需求。
+然后查看浏览器控制台 -> 审查元素 -> 事件监听，
 
-4. 事件处理函数的上下文绑定：React 默认会将事件处理函数绑定到组件实例上，以确保在处理函数中可以访问组件的上下文和方法。这样可以避免在事件处理函数中手动绑定`this`关键字。
+<p align=center><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b2f8707a60634c28b1c374369280293a~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1426&h=588&s=256323&e=png&b=ffffff" alt="image.png"  width="50%"/></p>
 
-接下来我们看看详细的实现过程。
+我们可以看到此时的 button 元素绑定的 click 事件为 noop， 当我们选中入口 dom 节点时惊奇的发现，#app (入口)节点被绑定了一大堆的事件
 
-首先，我们提供如下组件，然后查看浏览器控制台 -> 审查元素 -> 事件监听，我们可以看到此时的 button 元素绑定的 click 事件为 noop ，当我们选中入口 dom 节点时惊奇的发现，#app 节点被绑定了一大堆的事件，实际上，这就是 React 有意而为之。
+<p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ce921c881709448aa87794b7c45046c3~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1956&h=1202&s=521505&e=png&b=ffffff" alt="image.png"  width="50%"/></p>
 
-在 16.8 及之前的版本，这些事件直接被绑定在 document 元素上，而从 17.2 开始，将全局事件绑定在了入口 dom 上了，这么做的好处利于多应用，因为 react 支持一个 document 下挂在多个 React 应用，这样做互不干扰。
+其中的 document 上绑定的 click 事件是函数 dispatchDiscreteEvent。可以先记住这个函数，后面还会提到。
 
-<p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5adcea459cbd40f199c99d444be48398~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=840&h=650&s=145843&e=png&b=ffffff" alt="image.png" width="100%" /></p>
+> 在 16.8 及之前的版本，这些事件直接被绑定在 document 元素上，而从 17.2 开始，将全局事件绑定在了入口 dom 上了，这么做的好处利于多应用，因为 react 支持一个 document 下挂在多个 React 应用，这样做互不干扰。
+>
+> <p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5adcea459cbd40f199c99d444be48398~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=840&h=650&s=145843&e=png&b=ffffff" alt="image.png" width="50%" /></p>
+
+**还有一个方面**，它将事件处理函数绑定到组件实例上，这样可以避免在事件处理函数中手动绑定`this`关键字。
+
+### `onClick`方法如何被执行的
+
+即使我们不看代码，有上面的铺垫，也可以明白，`onClick`方法的大致经历
+
+```
+=> 1. 读取onClickf方法，
+=> 2. react合并优化处理
+=> 3. 挂载在docment上
+=> 4. 点击时触发方法
+```
 
 我们知道每个 React 应用的入口是通过 createRoot 函数，我们打开源码，就可以看到该函数的一项工作是 `listenToAllSupportedEvents`，也就是在 rootNode 监听 所有支持的事件。
+
+```js
+function createRoot(container, options) {
+  // 省去无关代码
+  if (options !== null && options !== undefined) {
+    // 初始化参数
+  }
+  var root = createContainer(container);
+  var rootContainerElement =
+    container.nodeType === COMMENT_NODE ? container.parentNode : container;
+  listenToAllSupportedEvents(rootContainerElement);
+  return new ReactDOMRoot(root);
+}
+```
 
 深入的研究，可以看到 React 根据事件的优先级分为：离散事件、连续事件、普通事件，在 createEventListenerWrapperWithPriority 中，通过当前事件的级别，分发对应的事件监听器
 
