@@ -39,7 +39,7 @@ jobs:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
         run: |-
           npm run docs:build
-          scp -i "$SERVER_SSH_KEY" -r src/.vuepress/dist "$SERVER_USER@$SERVER_HOST:/home/blog"
+          scp -i "$SERVER_SSH_KEY" -r ./src/.vuepress/dist "$SERVER_USER@$SERVER_HOST:/home/blog"
           > src/.vuepress/dist/.nojekyll
 
       - name: 部署文档
