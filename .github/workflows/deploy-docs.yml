@@ -52,8 +52,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
-          script: | 
-            # 服务器部署逻辑
-            cd /home/blog
-            rm -rf *
-            cp -r ./src/.vuepress/dist/* /home/blog/
+          source: src/.vuepress/dist/* # GitHub Actions 的文件路径
+          target: /home/blog/  
