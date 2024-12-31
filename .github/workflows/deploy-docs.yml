@@ -44,7 +44,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: src/.vuepress/dist # 上传的源路径
+          source: src/.vuepress # 上传的源路径
           target: /home/blog/          # 临时上传目录
 
       - name: 部署文档
