@@ -37,6 +37,8 @@ jobs:
         run: |-
           npm run docs:build
           ls
+          cd src/.vuepress/dist
+          ls
           > src/.vuepress/dist/.nojekyll
 
       - name: 部署文档
