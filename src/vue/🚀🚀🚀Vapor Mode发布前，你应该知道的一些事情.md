@@ -1,6 +1,7 @@
 ---
 title: 🚀🚀🚀Vapor Mode发布前，你应该知道的一些事情！
 isTimeLine: true
+star: true
 date: 2025-01-19
 category:
   - 前端

@@ -1,6 +1,7 @@
 ---
 title: Vue3优雅的监听localStorage变化
 isTimeLine: true
+star: true
 date: 2023-06-01
 category:
   - 前端
@@ -9,17 +10,16 @@ tag:
   - Vue
 ---
 
-
 > 文章同步在公众号： 萌萌哒草头将军
 >
-> 最近公众号有🎁，欢迎关注了解
+> 最近公众号有 🎁，欢迎关注了解
 
 最近在研究框架，也仔细用了`Vue3`一些功能，今天分享一次我的实践：
 
 **`Vue3`如何监听`localStorage`的变化。**
 
-*   [🎉干货满满，React设计原理(一)：藏在源码里的紧箍咒，几个容易混淆的变量🎉](https://juejin.cn/post/7241567583504728119 "https://juejin.cn/post/7241567583504728119")
-*   [🎉干货满满，React设计原理(二)：藏在源码里的两个圈，重要的链表结构和双缓存技术🎉](https://juejin.cn/post/7242249906257363001)
+- [🎉 干货满满，React 设计原理(一)：藏在源码里的紧箍咒，几个容易混淆的变量 🎉](https://juejin.cn/post/7241567583504728119 "https://juejin.cn/post/7241567583504728119")
+- [🎉 干货满满，React 设计原理(二)：藏在源码里的两个圈，重要的链表结构和双缓存技术 🎉](https://juejin.cn/post/7242249906257363001)
 
 ### 💡 为什么要这样做？
 
@@ -98,7 +98,7 @@ export const $localStorage = {
     if (!keys.includes(key)) keys.push(key);
 
     // 被修改就发布事件
-    sub.publish(key, value);    
+    sub.publish(key, value);
 
     window.localStorage.setItem(key, value);
   },
@@ -131,17 +131,15 @@ import { ref } from "vue";
 import mediator from "./mediator";
 const createMediator = () => mediator.install({});
 
- export const useStorage = (key: string) => {
-  
+export const useStorage = (key: string) => {
   const string = ref(null);
 
   const sub = createMediator();
 
-  sub.subscribe(key, (value) => string.value = value);
+  sub.subscribe(key, (value) => (string.value = value));
 
   return string;
 };
-
 ```
 
 ### 💎 测试

@@ -1,6 +1,7 @@
 ---
 title: 搭建属于自己的ChatGpt微信机器人
 isTimeLine: true
+star: true
 date: 2024-04-07
 category:
   - ChatGpt
