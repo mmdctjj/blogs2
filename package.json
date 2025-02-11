@@ -17,6 +17,7 @@
     "vuepress-theme-hope": "2.0.0-beta.233"
   },
   "dependencies": {
+    "vuepress-plugin-rss": "^2.0.0",
     "vuepress-plugin-search-pro": "2.0.0-beta.233"
   }
 }
