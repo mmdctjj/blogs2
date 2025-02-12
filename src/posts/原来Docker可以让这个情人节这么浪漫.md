@@ -67,9 +67,25 @@ CMD ["php", "-S", "0.0.0.0:8383", "-t", "/app"]
 
 ### 准备好数据库
 
-在你的机器上准备好 `mysql` 数据库，你可以使用 `docker` 镜像运行数据库或者服务器数据库，然后使用数据库客户端链接，根据准备好的文件`./love20240612.sql` 执行 `sql` 创建命令，创建对应的表。
+在你的机器上准备好 `mysql` 数据库，你可以使用 `docker` 镜像运行数据库或者服务器数据库，
+
+```bash
+docker run --name mysql5.7 \
+  -e MYSQL_ROOT_PASSWORD=xxx \
+  -e MYSQL_DATABASE=love \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=xxxx \
+  -p 3306:3306 \
+  -d mysql:5.7.22
+```
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e3916feec10b432fbc32dea1482adc88~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739445312&x-orig-sign=MuWXTe4xvtDnMUtKI18HpzJcNUU%3D)
+
+然后使用数据库客户端链接，根据准备好的文件`./love20240612.sql` 执行 `sql` 创建命令，创建对应的表。
 
 推荐使用 `vscode` 插件，链接数据库，打开 `sql` 文件点击执行按钮快速创建
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/671d4641592a4a629def8992845ca133~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739446213&x-orig-sign=A9PNxKbIhkAm42wtHhraGXCes5c%3D)
 
 ### 打包和运行
 
@@ -177,7 +193,17 @@ docker-compose down
 
 如果你想要 docker 镜像，通用可以到我公众号后台回复：love，根据情况下载即可！
 
-部署前，我们需要在上面提到的数据库中新增一个存放图片信息的库，然后使用下面的命令运行安装蓝空图床，
+部署前，我们需要在上面提到的数据库中新增一个存放图片信息的库，
+
+```sql
+mysql -u root -p
+CREATE DATABASE picture;
+show DATABASES;
+```
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d65bc3ecbaeb47969c6044eec6f4c6e4~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739447165&x-orig-sign=EaPmQr0CHassnWWbLcMKRlMUhfs%3D)
+
+然后使用下面的命令运行安装蓝空图床，
 
 ```bash
 docker network create lsky-net
