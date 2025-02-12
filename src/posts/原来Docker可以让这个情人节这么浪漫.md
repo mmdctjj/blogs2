@@ -33,29 +33,36 @@ git clone https://gitee.com/kiCode111/LikeGirl_5.1.0.git
 由于该项目是`php`项目，所以我们需要指定基础镜像为`php`。
 
 ```Dockerfile
+# 使用基础的PHP镜像作为基础
+FROM php:apache
+
+# 设置工作目录
+WORKDIR /app
+
+RUN docker-php-ext-install pdo_mysql mysqli
+# 拷贝目录下的所有文件到工作目录
+COPY / /app
+
+# 定义容器启动时执行的命令（例如：运行PHP的内置服务器）
+CMD ["php", "-S", "0.0.0.0:8383", "-t", "/app"]
 
 ```
 
 ### 增加环境变变量
 
-接下来需要设置几个环境变量，打开`./admin/Config_DB.php` 文件，将下面的变量值替换为上面设置的环境变量。
+接下来需要注释几个环境变量，打开`./admin/Config_DB.php` 文件，将下面的变量注释或删除掉。
 
 ```js
 // localhost 为数据库地址 一般使用默认的即可 或（127.0.0.1）
 // $db_address = "localhost";
-$db_address = "localhost";
 //数据库用户名
 // $db_username = "root";
-$db_username = "root";
 //数据库密码
 // $db_password = "123456";
-$db_password = "123456";
 //数据库表名
 // $db_name = "LikeGirl20240612";
-$db_name = "LikeGirl20240612";
 //敏感信息修改安全码 建议设置复杂一些
 // $Like_Code = "Love";
-$Like_Code = "Love";
 ```
 
 ### 准备好数据库
@@ -63,16 +70,6 @@ $Like_Code = "Love";
 在你的机器上准备好 `mysql` 数据库，你可以使用 `docker` 镜像运行数据库或者服务器数据库，然后使用数据库客户端链接，根据准备好的文件`./love20240612.sql` 执行 `sql` 创建命令，创建对应的表。
 
 推荐使用 `vscode` 插件，链接数据库，打开 `sql` 文件点击执行按钮快速创建
-
-```yaml
-# 数据库相关
-DB_NAME: "db_name"
-DB_USERNAME: "root"
-DB_PASSWORD: "psd"
-DB_ADDRESS: "192.168.x.xxx"
-
-LIKE_CODE: "xxxx"
-```
 
 ### 打包和运行
 
@@ -224,3 +221,15 @@ networks:
 或者参考这里：https://hub.docker.com/r/halcyonazure/lsky-pro-docker
 
 然后在首页配置刚才创建的数据库，即可自动创建对应组件，等创建完成，我们就可以上传图片之后得到图片链接了！
+
+### 总结
+
+希望大家都可以通过这个教程博美人一笑！
+
+另外为了增加浪漫气氛，建议大家还可以：
+
+- 偷偷换一个情侣壁纸
+- 提前买好花朵、红酒、烛台，准备一个浪漫的烛光晚餐
+- 提前做好一个手工作为礼物
+
+提前祝大家情人节愉快～
