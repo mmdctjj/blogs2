@@ -8,11 +8,21 @@ tag:
   - Docker
 ---
 
-> 📌 本文是正经的 docker 教程，如果你不打算使用 docker 那么直接拉取代码运行就可以了，如果你想使用 docker，但是不想配置，可以去我公众号后台回复：love，即可获得打包好的镜像
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/2af412f4f0c4464aa932afa256d1154e~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1740018657&x-orig-sign=2DQa15IZcP7L26IzTcmeMEQRahM%3D)
+
+> 📌 文章同步在公众号：萌萌哒草头将军，欢迎关注！
+
+本文是正经的 docker 教程，如果你是老手了，请直接下载：
+
+```bash
+docker push ctjj/like-girl:latest
+```
+
+> 如果你不打算使用 docker 那么直接拉取代码运行就可以了，如果你想使用 docker，但是无法下载，可以去我公众号后台回复：love，即可获得打包好的镜像
 
 情人节马上要到了，正好最近发现了一个特别有意思的情侣相册的项目，遗憾的是目前不支持 docker，不过没关系，我出手了！
 
-原项目地址：https://gitee.com/kiCode111/LikeGirl_5.1.0
+原项目地址：<https://gitee.com/kiCode111/LikeGirl5.0.0>
 
 下面是制作情侣小站 `镜像` 的过程
 
@@ -45,7 +55,6 @@ COPY / /app
 
 # 定义容器启动时执行的命令（例如：运行PHP的内置服务器）
 CMD ["php", "-S", "0.0.0.0:8383", "-t", "/app"]
-
 ```
 
 ### 增加环境变变量
@@ -79,13 +88,13 @@ docker run --name mysql5.7 \
   -d mysql:5.7.22
 ```
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e3916feec10b432fbc32dea1482adc88~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739445312&x-orig-sign=MuWXTe4xvtDnMUtKI18HpzJcNUU%3D)
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e3916feec10b432fbc32dea1482adc88~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1740018657&x-orig-sign=ZmSbvy9%2FP3juR6yg0vBQCS2CgUA%3D)
 
 然后使用数据库客户端链接，根据准备好的文件`./love20240612.sql` 执行 `sql` 创建命令，创建对应的表。
 
 推荐使用 `vscode` 插件，链接数据库，打开 `sql` 文件点击执行按钮快速创建
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/671d4641592a4a629def8992845ca133~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739446213&x-orig-sign=A9PNxKbIhkAm42wtHhraGXCes5c%3D)
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/671d4641592a4a629def8992845ca133~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1740018657&x-orig-sign=NGOo6V5qwotK7n5dTz5AXV%2Bm6MA%3D)
 
 ### 打包和运行
 
@@ -136,7 +145,6 @@ docker run -d \
   -e LIKE_CODE="xxxx" \
   -e DB_ADDRESS="192.168.x.xxx" \
   like_girl
-
 ```
 
 或者我们使用 `docker-compose.yaml` 文件启动！
@@ -148,7 +156,7 @@ version: "3.2"
 
 services:
   love:
-    image: like_girl # 使用已创建的镜像
+    image: love_girl # 使用已创建的镜像
     ports:
       - "1314:8383"
     container_name: love
@@ -185,11 +193,54 @@ docker-compose down
 
 进入管理页面： `http://localhost:1314/admin/`!
 
+### 上传 dockerhub
+
+打 `tag`：
+
+```bash
+docker tag love_girl:latest ctjj/like-girl:latest
+```
+
+上传：
+
+```bash
+docker push ctjj/like-girl:latest
+```
+
 如果你已经有自己的图床提供图片链接，那么到这里就结束了，如果你还没有，可以接着部署一个图床！
+
+### `nginx`部署
+
+```bash
+vi /etc/nginx/nginx.conf
+```
+
+添加如下：
+
+```conf
+server {
+    listen 80;
+    server_name www.xxxx.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:1314;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+重载：
+
+```bash
+nginx -s reload
+```
 
 ## 配置图床
 
-我使用的是蓝空图床，项目地址：https://github.com/lsky-org/lsky-pro
+我使用的是蓝空图床，项目地址：<https://github.com/lsky-org/lsky-pro>
 
 如果你想要 docker 镜像，通用可以到我公众号后台回复：love，根据情况下载即可！
 
@@ -201,7 +252,7 @@ CREATE DATABASE picture;
 show DATABASES;
 ```
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d65bc3ecbaeb47969c6044eec6f4c6e4~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1739447165&x-orig-sign=EaPmQr0CHassnWWbLcMKRlMUhfs%3D)
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d65bc3ecbaeb47969c6044eec6f4c6e4~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1740018657&x-orig-sign=u1VT%2FsoGO7jxWKnIhpjv4OtTzqA%3D" alt="image.png" width="30%">
 
 然后使用下面的命令运行安装蓝空图床，
 
@@ -244,7 +295,7 @@ networks:
   lsky-net: {}
 ```
 
-或者参考这里：https://hub.docker.com/r/halcyonazure/lsky-pro-docker
+或者参考这里：<https://hub.docker.com/r/halcyonazure/lsky-pro-docker>
 
 然后在首页配置刚才创建的数据库，即可自动创建对应组件，等创建完成，我们就可以上传图片之后得到图片链接了！
 
@@ -258,4 +309,8 @@ networks:
 - 提前买好花朵、红酒、烛台，准备一个浪漫的烛光晚餐
 - 提前做好一个手工作为礼物
 
-提前祝大家情人节愉快～
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/a9b8bc82bd56498f86559a47531ba736~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg6JCM6JCM5ZOS6I2J5aS05bCG5Yab:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTExNjc1OTU0MzI2MDcyNyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1740018657&x-orig-sign=clG3lCle1e2qoWPWN2E8HS2C2zA%3D" alt="我给我老婆做的纸戒指" width="50%">
+
+元宵节快乐呀！提前祝大家情人节愉快～
+
+最后文章中如果有错误的地方欢迎指正！
