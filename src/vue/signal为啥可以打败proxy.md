@@ -31,7 +31,11 @@ count(2); // Console: Count is: 2
 console.log(doubleCount()); // 4
 ```
 
-### `alien-signals`的底层原理
+### `alien-signals` 的底层原理
+
+`alien-signals` 官方提到：该项目探索基于 `push-pull` 混合策略的信号算法。与其相似的框架还有：`vue3` `svelte`。
+
+我们先来看看什么是 `push-pull` 策略。
 
 ### 为什么可以打败 `proxy` 响应式
 
