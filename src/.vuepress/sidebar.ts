@@ -8,4 +8,6 @@ export default sidebar({
   "/vite/": "structure",
   "/vue/": "structure",
   "/posts/": "structure",
+  "/service/": "structure",
+  "/ai-tools/": "structure",
 });
