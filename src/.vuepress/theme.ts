@@ -35,6 +35,14 @@ export default hopeTheme({
 
   blog: {
     description: "千里之行，始于足下",
+    medias: {
+      GitHub: "https://github.com/mmdctjj",
+      XiaoHongShu:
+        "https://www.xiaohongshu.com/user/profile/645bb5ee000000001002a883",
+      BiliBili: "https://space.bilibili.com/8738961",
+      Zhihu: "https://www.zhihu.com/people/mmdctjj",
+      Gmail: "mmdctjj@gmaol.com",
+    },
   },
 
   encrypt: {
