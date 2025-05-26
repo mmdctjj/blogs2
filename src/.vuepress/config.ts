@@ -14,8 +14,13 @@ export default defineUserConfig({
   head: [
     ["meta", { name: "referrer", content: "no-referrer" }],
     [
-      "meta",
-      { name: "google-adsense-account", content: "ca-pub-1470735171314459" },
+      "script",
+      {
+        async: true,
+        "data-ad-client": "ca-pub-1470735171314459", // 替换为你的真实 ID
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1470735171314459",
+        crossorigin: "anonymous",
+      },
     ],
   ],
   plugins: [
