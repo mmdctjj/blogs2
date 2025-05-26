@@ -1,9 +1,10 @@
 ---
-home: false
+home: true
 layout: BlogHome
 icon: home
 title: 首页
 heroImage: /logo.jpg
+bgImage: /bgImage.jpg
 heroImageStyle:
   {
     maxHeight: "150px",
@@ -12,7 +13,7 @@ heroImageStyle:
     boxShadow: "0 15px 18px rgba(0,0,0,0.2)",
   }
 heroText: 萌萌哒草头将军
-heroFullScreen: false
+heroFullScreen: true
 tagline: 千里之行，始于足下
 article: false
 projects:

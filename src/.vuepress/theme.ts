@@ -8,11 +8,11 @@ const MR_HOPE_AVATAR =
 export default hopeTheme({
   hotReload: true,
 
-  hostname: "https://mmdctjj.github.io/blog2",
+  hostname: "https://www.mmdctjj.top",
 
   author: {
     name: "萌萌哒草头将军",
-    url: "https://mmdctjj.github.io/blog2",
+    url: "https://www.mmdctjj.top",
   },
 
   iconAssets: "iconfont",
