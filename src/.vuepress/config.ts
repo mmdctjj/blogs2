@@ -14,7 +14,11 @@ export default defineUserConfig({
   // Enable it with pwa
   // shouldPrefetch: false,
   head: [
-    ['meta', { name: 'referrer', content: 'no-referrer' }]
+    ["meta", { name: "referrer", content: "no-referrer" }],
+    [
+      "meta",
+      { name: "google-adsense-account", content: "ca-pub-1470735171314459" },
+    ],
   ],
   plugins: [
     searchProPlugin({
@@ -32,5 +36,5 @@ export default defineUserConfig({
         },
       ],
     }),
-  ]
+  ],
 });
