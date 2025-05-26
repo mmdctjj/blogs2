@@ -3,8 +3,6 @@ import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  base: "/blogs2/",
-
   lang: "zh-CN",
   title: "萌萌哒草头将军",
   description: "萌萌哒草头将军的博客",
